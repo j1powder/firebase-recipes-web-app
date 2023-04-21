@@ -1,4 +1,5 @@
 import firebase from './FirebaseConfig';
+import 'firebase/compat/auth';
 
 const auth = firebase.auth();
 
@@ -18,14 +19,14 @@ const logoutUser = () => {
 
 const sendPasswordResetEmail = (email) => {
 
-    return auth.sendPasswordResetEmail();
+    return auth.sendPasswordResetEmail(email);
 }
 
-/* const loginWithGoogle = () => {
+const loginWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
 
     return auth.signInWithPopup(provider);
-} */
+} 
 
 const subscribeToAuthChanges = (handleAuthChange) => {
     auth.onAuthStateChanged((user)=>{
@@ -38,6 +39,7 @@ const FirebaseAuthService = {
     loginUser,
     logoutUser,
     sendPasswordResetEmail,
+    loginWithGoogle,
     subscribeToAuthChanges,
 };
 
